@@ -6,6 +6,28 @@
 </head>
 <body>
 	<h1>Bookstore</h1>
+	<table>
+		<tbody>
+		<tr>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Year</th>
+			<th>ISBN</th>
+			<th>Price</th>
+		</tr>
+		<!-- th:each loops the model attribute "books" through and inputs its content to the "book" object, which is declared here -->
+		<tr th:each = "book : ${books}">
+		<!-- th:each views the content of the book object, which was declared above. You need to use the Book class attribute with the book object to print the content of it, i.e.: book.title, book.author, etc. -->
+		<td th:text = "${book.title}"></td>
+		<td th:text = "${book.author}"></td>
+		<td th:text = "${book.year}"></td>
+		<td th:text = "${book.isbn}"></td>
+		<td th:text = "${book.price}"></td>
+		</tr>
+		
+		</tbody>
+	
+	</table>
 	
 	
 </body>
