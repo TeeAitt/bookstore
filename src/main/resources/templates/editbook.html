@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Bookstore</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h2>Edit book information</h2>
+	<div class="col-md-4">
+	<!-- Controller has a function that listens the "@{../save} action. -->
+	<form th:object="${book}" th:action="@{../save}" action="#" method="post">
+	<!-- The * before refers to the book object by that to the Book class also, so the "{title}" is its attribute. The id field is hidden, because it's auto generated. -->
+    <input type="hidden" th:field="*{id}" class="form-control"/>
+    <input type="text" th:field="*{title}" />
+    <input type="text" th:field="*{author}" />
+    <input type="text" th:field="*{year}" />
+    <input type="text" th:field="*{isbn}" />
+    <input type="text" th:field="*{price}" />
+    <input type="submit" class="btn btn-success" value="Save"></input>
+</form>
+		
+	</form>
+	</div>
+	
+	
+</body>
+</html>

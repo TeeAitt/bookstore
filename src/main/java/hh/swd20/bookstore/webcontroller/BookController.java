@@ -31,6 +31,15 @@ public class BookController {
         return "addbook";
     }
 	
+	// This function prints existing book information, that can then be edited.
+		@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)  // This mapping has a variable, the id inside the curly braces. It refers to the id of particular book object on the web site, so when clicked it will GET information of that id for edit.
+	    public String editBook(@PathVariable(value="id") Long bookId, Model model) {  // With PathVariable the particular id is saved in a Long object and also in Model, because for editing it needs to be able to be viewed.
+	    	model.addAttribute("book", bookRepository.findById(bookId));  // This model attribute uses key word "book" to find the particular book from BookRepository by its id using ".findById()" method.
+			return "editbook";
+	    }
+	
+	
+	// This function saves the new book as well edited book information from addBook and editBook functions and POSTs it to the server.
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Book book) {	  // This save function uses the new empty Book object, that was created with addBook.
 		bookRepository.save(book);	  // Whit the ".save()" method, the new book will be saved in the BookRepository.
@@ -39,7 +48,7 @@ public class BookController {
 	
 	
 	// This function deletes a book
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)  	 // This mapping has a variable, the id inside the curly braces. It refers to the id of particular book object on the web site, so when clicked it will GET and pass that id for the server to delete if from the list (and table).
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)  	 // This mapping has a variable, the id inside the curly braces. It refers to the id of particular book object on the web site, so when clicked it will GET information of that id to delete it from the list (and table).
 	public String deleteBooks(@PathVariable(value="id") Long bookId) {  // With PathVariable the particular id is saved in a Long object.  
 		bookRepository.deleteById(bookId);	// Above the BookRepository was wired to the BookController, so now it can be used with ".deleteById()" method to delete the particular information by using the id which was saved in bookId object.
 		return "redirect:../bookstore"; 	// This redirects the end result back to /bookstore page.
