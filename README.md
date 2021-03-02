@@ -12,6 +12,6 @@ Currently it has:
  - a page for editing an existin book
  - a page where new categories can be added
 
-Functions for the all mentioned above and also a function for deleting a book.
+Functions for all mentioned above and also a function for deleting a book.
 
 It is also a relational database: there are two Classes, Book and Category, with a many-to-one and one-to-many relationship.
