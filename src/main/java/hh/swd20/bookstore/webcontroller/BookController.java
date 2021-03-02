@@ -15,7 +15,6 @@ public class BookController {
 	@Autowired	// This wires the repository class in the controller class by injecting the BookRepository class in to the BookContoller class.
 	private BookRepository bookRepository;
 	
-	
 	// This function prints the books on the site
 	@RequestMapping("/bookstore")	// Maps this to the "/bookstore" page.
 	public String bookstore(Model model) {	// With model the content is pushed from controller to view.
@@ -23,19 +22,20 @@ public class BookController {
 		return "bookstore";			// Name of the html file, where the controller model content is viewed.
 	}
 	
-
-	// This function prints an empty form for adding a new book
+	
+	// This function prints an empty form for adding a new book.
 	@RequestMapping(value = "/add")
     public String addBook(Model model) {
     	model.addAttribute("book", new Book());  // This model attribute uses key word "book", and it creates a new empty Book object.
         return "addbook";
     }
 	
+	
 	// This function prints existing book information, that can then be edited.
-		@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)  // This mapping has a variable, the id inside the curly braces. It refers to the id of particular book object on the web site, so when clicked it will GET information of that id for edit.
-	    public String editBook(@PathVariable(value="id") Long bookId, Model model) {  // With PathVariable the particular id is saved in a Long object and also in Model, because for editing it needs to be able to be viewed.
-	    	model.addAttribute("book", bookRepository.findById(bookId));  // This model attribute uses key word "book" to find the particular book from BookRepository by its id using ".findById()" method.
-			return "editbook";
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)  // This mapping has a variable, the id inside the curly braces. It refers to the id of particular book object on the web site, so when clicked it will GET information of that id for edit.
+    public String editBook(@PathVariable(value="id") Long bookId, Model model) {  // With PathVariable the particular id is saved in a Long object and also in Model, because for editing it needs to be able to be viewed.
+    	model.addAttribute("book", bookRepository.findById(bookId));  // This model attribute uses key word "book" to find the particular book from BookRepository by its id using ".findById()" method.
+		return "editbook";
 	    }
 	
 	

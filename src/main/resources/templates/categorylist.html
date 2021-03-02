@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Bookstore</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Bookstore categories</h1>
+	<h2>Categories</h2>
+	<table>
+		<tbody>
+		<tr>
+			<th>Name</th>
+		</tr>
+		<!-- th:each loops the model attribute "categories" through and inputs its content to the "category" object, which is declared here -->
+		<tr th:each = "category : ${categories}">
+		<!-- th:each views the content of the category object, which was declared above. You need to use the Category class attribute with the category object to print the content of it, i.e.: category.name. -->
+		<td th:text = "${category.name}"></td>
+		<!-- With the "@" and "{id}" the delete function links to the id of that row. So if there's five rows with ids' 1, 2, 3, 4 and 5, the particular row data will be deleted based on the id it has. -->
+		</tr>
+		</tbody>
+	
+	</table>
+	<br>
+	<a href = "/bookstore" class = "btn btn-primary">Main page</a>
+	
+	
+</body>
+</html>

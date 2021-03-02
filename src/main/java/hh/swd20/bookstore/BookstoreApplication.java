@@ -27,16 +27,16 @@ public class BookstoreApplication {
 			Category category1 = new Category("Action");  // You don't need the id attribute, because it's auto generated.
 			Category category2 = new Category("Adventure");
 			Category category3 = new Category("Scifi");
-			Category category4 = new Category("Romance");
+			Category category4 = new Category("Mystery");
 			
 			categoryRepository.save(category1);
 			categoryRepository.save(category2);
 			categoryRepository.save(category3);
 			categoryRepository.save(category4);
 			
-			bookRepository.save(new Book("The Lost Coding Temple", "Jackson", 2007, 98765, 19.99));  // You don't need the id attribute, because it's auto generated.
-			bookRepository.save(new Book("The Battle for Grades", "Peterson", 1988, 94382, 17.99));
-			bookRepository.save(new Book("Lightspeed Space Flying", "Nelson", 2013, 97465, 24.99));
+			bookRepository.save(new Book("Librarians Lost Book", "Johnson", 1973, "96835", 22.99, category2));  // You don't need the id attribute, because it's auto generated.
+			bookRepository.save(new Book("Streets of Darkness", "Smith", 2001, "94728", 7.99, category4));
+			bookRepository.save(new Book("Travel Through Space", "Robertson", 1985, "98572", 19.99, category3));
 			
 			
 			log.info("Fetch all categories");

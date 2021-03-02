@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity		// Describes the structure of the database table that is corresponding to the class
 			// table name, column names and data types, primary key etc. In short: an entity represents a table in relational database.
@@ -14,22 +16,36 @@ public class Book {
 	private String title;
 	private String author;
 	private int year;
-	private int isbn;
+	private String isbn;
 	private double price;
+	
+	@ManyToOne  // This annotation creates a link to another database table, and by that creates a relation between the tables.
+	@JoinColumn(name = "categId")  // This annotation defines the owner of the relationship. In this, it is the Category table and its primary key "id".
+	private Category category;  // The type of this attribute is Category, because of the Category object, which is the owner of this relationship.
 	
 	public Book() {
 		
 	}
 	
-	public Book(String title, String author, int year, int isbn, double price) {
+
+	public Book(String title, String author, int year, String isbn, double price, Category category) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.year = year;
 		this.isbn = isbn;
 		this.price = price;
+		this.category = category;
 	}
 
+	
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 	
 
 	public long getId() {
@@ -80,13 +96,13 @@ public class Book {
 
 
 
-	public int getIsbn() {
+	public String getIsbn() {
 		return isbn;
 	}
 
 
 
-	public void setIsbn(int isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 
@@ -105,6 +121,10 @@ public class Book {
 
 	@Override
 	public String toString() {
+		if (this.category != null)
+		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn
+				+ ", price=" + price + " category =" + this.getCategory() + "]";
+		else
 		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn
 				+ ", price=" + price + "]";
 	}

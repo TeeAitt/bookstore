@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Bookstore</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Bookstore</h1>
+	<h2>Create a new category</h2>
+		<div class="col-md-4">
+	<!-- Controller has a function that listens the "@{create} action. -->
+	<form th:object="${category}" th:action="@{create}" action="#" method="post">
+		<label for="name">Name</label>
+		<!-- The * before refers to the category object by that to the Category class also, so the "{name}" is its attribute. There is no need for id field, because it's auto generated. -->
+		<input type="text" id="name" th:field="*{name}" class="form-control"/>
+		<div style="clear: both; display: block; height: 10px;"></div>
+		
+		<input type="submit" class="btn btn-primary" value="Create"></input>
+	</form>
+	</div>
+	
+	
+</body>
+</html>
