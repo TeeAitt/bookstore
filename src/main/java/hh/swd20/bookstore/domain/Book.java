@@ -19,7 +19,7 @@ public class Book {
 	private String isbn;
 	private double price;
 	
-	@ManyToOne  // This annotation creates a link to another database table, and by that creates a relation between the tables.
+	@ManyToOne  // This annotation creates a link to another database table, and by that creates a relationship between the tables.
 	@JoinColumn(name = "categId")  // This annotation defines the owner of the relationship. In this, it is the Category table and its primary key "id".
 	private Category category;  // The type of this attribute is Category, because of the Category object, which is the owner of this relationship.
 	

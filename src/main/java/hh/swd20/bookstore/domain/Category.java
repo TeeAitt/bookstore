@@ -18,7 +18,7 @@ public class Category {
 	private long id;
 	private String name;
 	
-	// This annotation is the other end of the relation annotations.
+	// This annotation is the other end of the relationship annotations.
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category") // The "category" tells to which attribute this annotation will be linked, in other words: mapped.
 	private List<Book> books;  // The type is a list here, because Category can have many Book items, in contrast to Book that can only have on Category. 
 	
