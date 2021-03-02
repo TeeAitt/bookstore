@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 			// table name, column names and data types, primary key etc. In short: an entity represents a table in relational database.
 public class Book {
 	@Id		// Sets the primary key. It annotates an attribute to be the primary key. In this the attribute is named id (as well).
-	@GeneratedValue(strategy=GenerationType.AUTO)  // Automatically generates new primary key values (in this it's the id), when new information is inputed in the table.
+	@GeneratedValue(strategy=GenerationType.IDENTITY)  // Automatically generates new primary key values (in this it's the id), when new information is inputed in the table.
 	private long id;
 	private String title;
 	private String author;

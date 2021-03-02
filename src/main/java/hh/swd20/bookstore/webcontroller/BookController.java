@@ -9,11 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import hh.swd20.bookstore.domain.Book;
 import hh.swd20.bookstore.domain.BookRepository;
+import hh.swd20.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookController {
 	@Autowired	// This wires the repository class in the controller class by injecting the BookRepository class in to the BookContoller class.
 	private BookRepository bookRepository;
+	
+	@Autowired	// This wires the repository class in the controller class by injecting the CategoryRepository class in to the BookContoller class.
+	private CategoryRepository categoryRepository;
 	
 	// This function prints the books on the site
 	@RequestMapping("/bookstore")	// Maps this to the "/bookstore" page.
@@ -26,8 +30,9 @@ public class BookController {
 	// This function prints an empty form for adding a new book.
 	@RequestMapping(value = "/add")
     public String addBook(Model model) {
-    	model.addAttribute("book", new Book());  // This model attribute uses key word "book", and it creates a new empty Book object.
-        return "addbook";
+    	model.addAttribute("book", new Book());  // This model attribute uses keyword "book", and it creates a new empty Book object.
+        model.addAttribute("categories", categoryRepository.findAll());  // This model attribute uses keyword "categories". With it, the categories can be viewed be a dropdown list in the addbook page.
+    	return "addbook";
     }
 	
 	

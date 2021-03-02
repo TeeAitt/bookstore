@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 public class Category {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)// Automatically generates new primary key values (in this it's the id), when new information is inputed in the table.
+	@GeneratedValue(strategy=GenerationType.IDENTITY)// Automatically generates new primary key values (in this it's the id), when new information is inputed in the table.
 	private long id;
 	private String name;
 	
