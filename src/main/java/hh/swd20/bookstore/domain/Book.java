@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity		// Describes the structure of the database table that is corresponding to the class
-			// table name, column names and data types, primary key etc.
+			// table name, column names and data types, primary key etc. In short: an entity represents a table in relational database.
 public class Book {
 	@Id		// Sets the primary key. It annotates an attribute to be the primary key. In this the attribute is named id (as well).
 	@GeneratedValue(strategy=GenerationType.AUTO)  // Automatically generates new primary key values (in this it's the id), when new information is inputed in the table.
