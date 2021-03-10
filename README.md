@@ -15,3 +15,5 @@ Currently it has:
 Functions for all mentioned above and also a function for deleting a book.
 
 It is also a relational database: there are two Classes, Book and Category, with a many-to-one and one-to-many relationship.
+
+It now also has RESTful services, so books and categories can now be used with JSON.
