@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,14 +34,14 @@ public class BookController {
 	
 	
 	// This function is a RESTful service that will get all the books
-	@RequestMapping(value="books", method = RequestMethod.GET)
+	@RequestMapping(value="/books", method = RequestMethod.GET)
 	public @ResponseBody List<Book> bookListRest() {  // Java written book object will be transfered to JSON booklist and returned to the browser with GET method. 
 		return (List<Book>) bookRepository.findAll();
 	}
 	
 	
 	// This function is a RESTful service that will get a book by its id
-	@RequestMapping(value="books/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/books/{id}", method = RequestMethod.GET)
 	public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId) { // Search book by its id and if found, then Optional<> is true and the Java written book object will be transfered to JSON and returned with GET method.
 		return bookRepository.findById(bookId);
 	}
@@ -52,6 +54,13 @@ public class BookController {
         model.addAttribute("categories", categoryRepository.findAll());  // This model attribute uses keyword "categories". With it, the categories can be viewed be a dropdown list in the addbook page.
     	return "addbook";
     }
+	
+	
+	// This function is a RESTful service that will save a new book
+	@RequestMapping(value="/books", method = RequestMethod.POST)
+	public @ResponseBody Book saveBookRest(@RequestBody Book book) {
+		return bookRepository.save(book);
+	}
 	
 	
 	// This function prints existing book information, that can then be edited.
