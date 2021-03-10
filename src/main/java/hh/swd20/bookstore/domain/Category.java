@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity	 // Describes the structure of the database table that is corresponding to the class
 		 // table name, column names and data types, primary key etc. In short: an entity represents a table in relational database.
 public class Category {
@@ -18,7 +20,8 @@ public class Category {
 	private long id;
 	private String name;
 	
-	// This annotation is the other end of the relationship annotations.
+	// JsonIgnore will prevent an infinite loop that will happen with a JSON and OneToMany combination.
+	@JsonIgnore				// OneToMany annotation is the other end of the relationship annotations.
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category") // The "category" tells to which attribute this annotation will be linked, in other words: mapped.
 	private List<Book> books;  // The type is a list here, because Category can have many Book items, in contrast to Book that can only have on Category. 
 	

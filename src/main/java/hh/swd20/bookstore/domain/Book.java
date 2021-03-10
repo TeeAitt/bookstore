@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity		// Describes the structure of the database table that is corresponding to the class
 			// table name, column names and data types, primary key etc. In short: an entity represents a table in relational database.
 public class Book {
@@ -19,6 +21,8 @@ public class Book {
 	private String isbn;
 	private double price;
 	
+	// JsonIgnore will prevent an infinite loop that will happen with a JSON and OneToMany combination.
+	@JsonIgnore
 	@ManyToOne  // This annotation creates a link to another database table, and by that creates a relationship between the tables.
 	@JoinColumn(name = "categId")  // This annotation defines the owner of the relationship. In this, it is the Category table and its primary key "id".
 	private Category category;  // The type of this attribute is Category, because of the Category object, which is the owner of this relationship.
