@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +24,13 @@ public class BookController {
 	
 	@Autowired	// This wires the repository class in the controller class by injecting the CategoryRepository class in to the BookContoller class.
 	private CategoryRepository categoryRepository;
+	
+	
+	// This function if for login page
+	@RequestMapping(value="/login")
+	public String login() {
+		return "login";
+	}
 	
 	// This function prints the books on the site
 	@RequestMapping("/bookstore")	// Maps this to the "/bookstore" page.
@@ -81,6 +88,7 @@ public class BookController {
 	
 	// This function deletes a book
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)  	 // This mapping has a variable, the id inside the curly braces. It refers to the id of particular book object on the web site, so when clicked it will GET information of that id to delete it from the list (and table).
+	@PreAuthorize("hasRole('ADMIN')")  // The PreAuthorize annotation prevents from unauthorized users the possibility to delete a book by using "/delete/id" end point.
 	public String deleteBooks(@PathVariable(value="id") Long bookId) {  // With PathVariable the particular id is saved in a Long object.  
 		bookRepository.deleteById(bookId);	// Above the BookRepository was wired to the BookController, so now it can be used with ".deleteById()" method to delete the particular information by using the id which was saved in bookId object.
 		return "redirect:../bookstore"; 	// This redirects the end result back to /bookstore page.

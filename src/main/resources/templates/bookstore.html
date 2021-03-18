@@ -1,11 +1,19 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Bookstore</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 	<h1>Bookstore</h1>
+	<div>
+	<!-- This will show the logged in user name after the Welcome text. -->
+	<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div>
+	<form th:action="@{/logout}" method="post">
+	<input type="submit" value="Sign out" class="btn btn-xs btn-dnager"/></form>
+	</div>
 	<h2>List of books</h2>
 	<table>
 		<tbody>
@@ -16,6 +24,7 @@
 			<th>ISBN</th>
 			<th>Price</th>
 			<th>Category</th>
+			<th sec:authorize="hasRole('ADMIN')"></th>
 		</tr>
 		<!-- th:each loops the model attribute "books" through and inputs its content to the "book" object, which is declared here -->
 		<tr th:each = "book : ${books}">
@@ -28,7 +37,8 @@
 		<!-- Because Book is linked to Category (they have relationship) the category of specific book can be showed. -->
 		<td th:text = "${book.category.name}"></td>
 		<!-- With the "@" and "{id}" the delete function links to the id of that row. So if there's five rows with ids' 1, 2, 3, 4 and 5, the particular row data will be deleted based on the id it has. -->
-		<td><a th:href = "@{/delete/{id}(id=${book.id})}">Delete</a></td>
+		<!-- With sec:authorize the delete button can be restricted only for ADMIN role -->
+		<td sec:authorize="hasRole('ADMIN')"><a th:href = "@{/delete/{id}(id=${book.id})}" class="btn btn-xs btn-dnager">Delete</a></td>
 		<td><a th:href = "@{/edit/{id}(id=${book.id})}">Edit</a></td>
 		</tr>
 		</tbody>
