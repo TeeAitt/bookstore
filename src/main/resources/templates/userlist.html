@@ -18,7 +18,7 @@
 			<th>User name</th>
 			<th>eMail</th>
 			<th>Role</th>
-			<th>Delete</th>
+		<!-- <th>Delete</th>  -->
 		</tr>
 		<!-- th:each loops the model attribute "users" through and inputs its content to the "user" object, which is declared here -->
 		<tr th:each = "user : ${users}">
@@ -28,7 +28,7 @@
 		<td th:text = "${user.role}"></td>
 		<!-- With the "@" and "{id}" the delete function links to the id of that row. So if there's five rows with ids' 1, 2, 3, 4 and 5, the particular row data will be deleted based on the id it has. -->
 		<!-- With sec:authorize the delete button can be restricted only for ADMIN role -->
-		<!-- <td sec:authorize="hasAuthority('ADMIN')"><a th:href = "@{/delete/{id}(id=${user.id})}" class="btn btn-xs btn-danger">Delete</a></td>   -->
+		<!-- <td sec:authorize="hasAuthority('ADMIN')"><a th:href = "@{/deluser/{id}(id=${user.id})}" class="btn btn-xs btn-danger">Delete</a></td>   -->
 		</tr>
 		</tbody>
 		</table>
@@ -36,7 +36,7 @@
 		
 		<br>
 		<a href = "/bookstore" class = "btn btn-large btn-success">Main page</a>
-		<!-- <a href = "/adduser" class = "btn btn-large btn-success">Add new user</a>   -->
+		<a href = "/adduser" class = "btn btn-large btn-success">Add new user</a>
 	
 </div>	
 </body>

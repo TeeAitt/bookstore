@@ -35,6 +35,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http		// The "http" tells how the configured address starts.
 		.authorizeRequests().antMatchers("/css/**").permitAll()  // With .antMatchers different end points can be defined, i.e. "/addbook", "/categorylist". The .permitAll means authentication is not needed.
 		.and()      // With ".and" multiple rules can be applied. 
+		.authorizeRequests().antMatchers("/h2-console/**").permitAll()
+		.and()
+		.csrf().ignoringAntMatchers("/h2-console/**")
+		.and()
+		.headers().frameOptions().sameOrigin()
+		.and()
 		.authorizeRequests().anyRequest().authenticated()   // This means that all other end points need an authentication, expect those excluded by .antMatchers and .permitAll
 		.and()
 	.formLogin()    // With .formLogin the login page can be configured.

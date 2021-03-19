@@ -24,40 +24,34 @@ public class UserController {
 		model.addAttribute("users", userRepository.findAll());
 		return "userlist";
 	}
-
-/**	
-*	Adding and saving a new user is still under develop. The problem is with the password, currently it causes an error in the newuser page.
-*	
-*	// This function prints an empty form for adding a new user.
-*	@RequestMapping("/adduser")
-*	@PreAuthorize("hasAuthority('ADMIN')")
-*	public String addUser(Model model) {
-*		model.addAttribute("user", new User());
-*		return "newuser";
-*	}
-*	
-*	// This function saves the new user.
-*	@RequestMapping(value = "/saveuser", method = RequestMethod.POST)
-*	@PreAuthorize("hasAuthority('ADMIN')")
-*	public String save(User user) {
-*		userRepository.save(user);
-*		return "redirect:userlist";
-*	}
-*
-*
-**/
-
+	
+	// This function prints an empty form for adding a new user.
+	@RequestMapping("/adduser")
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public String addUser(Model model) {
+		model.addAttribute("user", new User());
+		return "newuser";
+	}
+	
+	// This function saves the new user.
+	@RequestMapping(value = "/saveuser", method = RequestMethod.POST)
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public String save(User user) {
+		userRepository.save(user);
+		return "redirect:userlist";
+	}
+	
+	
 /**
-*	The delete function is not operating correctly, currently it deletes a book.
+*		deluser function is not working correctly.
 *
 *	// This function deletes a user.
-*	@RequestMapping(value="/delete/{id}", method=RequestMethod.POST)
+*	@RequestMapping(value="/deluser/{id}", method=RequestMethod.POST)
 *	@PreAuthorize("hasAuthority('ADMIN')")
 *	public String deleteUser(@PathVariable(value="id") Long userId) {
 *		userRepository.deleteById(userId);
 *		return "redirect:../userlist";
 *	}
-*	
+*
 **/
-
 }
