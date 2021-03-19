@@ -3,19 +3,25 @@
 <head>
 <title>Bookstore</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
+<div class="container">
+	<div class="col-md-4">
 	<h1>Bookstore</h1>
-	<div>
+	</div>
+	<br>
+	<div class="col-md-4">
 	<!-- This will show the logged in user name after the Welcome text. -->
 	<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
 	</div>
-	<div>
+	<br>
+	<div class="col-md-4">
 	<form th:action="@{/logout}" method="post">
-	<input type="submit" value="Sign out" class="btn btn-xs btn-dnager"/></form>
+	<input type="submit" value="Sign out" class="btn btn-sm btn-danger"/></form>
 	</div>
-	<h2>List of books</h2>
-	<table>
+	
+	<table class="table table-striped">
 		<tbody>
 		<tr>
 			<th>Title</th>
@@ -24,7 +30,8 @@
 			<th>ISBN</th>
 			<th>Price</th>
 			<th>Category</th>
-			<th sec:authorize="hasRole('ADMIN')"></th>
+			<th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+			<th>Edit</th>
 		</tr>
 		<!-- th:each loops the model attribute "books" through and inputs its content to the "book" object, which is declared here -->
 		<tr th:each = "book : ${books}">
@@ -38,18 +45,18 @@
 		<td th:text = "${book.category.name}"></td>
 		<!-- With the "@" and "{id}" the delete function links to the id of that row. So if there's five rows with ids' 1, 2, 3, 4 and 5, the particular row data will be deleted based on the id it has. -->
 		<!-- With sec:authorize the delete button can be restricted only for ADMIN role -->
-		<td sec:authorize="hasRole('ADMIN')"><a th:href = "@{/delete/{id}(id=${book.id})}" class="btn btn-xs btn-dnager">Delete</a></td>
-		<td><a th:href = "@{/edit/{id}(id=${book.id})}">Edit</a></td>
+		<td sec:authorize="hasAuthority('ADMIN')"><a th:href = "@{/delete/{id}(id=${book.id})}" class="btn btn-xs btn-danger">Delete</a></td>
+		<td><a th:href = "@{/edit/{id}(id=${book.id})}" class="btn btn-xs btn-success">Edit</a></td>
 		</tr>
 		</tbody>
 		</table>
 		
 		
 		<br>
-		<a href = "/add" class = "btn btn-primary">Add a Book</a>
-		<br>
-		<a href = "/newcateg" class = "btn btn-primary">Create a Category</a>
+		<a href = "/add" class = "btn btn-large btn-success">Add a Book</a>
+		<a href = "/newcateg" class = "btn btn-large btn-success">Create a Category</a>
+		<td sec:authorize="hasAuthority('ADMIN')"><a href = "/userlist" class = "btn btn-large btn-success">User list</a></td>
 	
-	
+</div>	
 </body>
 </html>

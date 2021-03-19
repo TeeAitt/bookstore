@@ -3,11 +3,12 @@
 <head>
 <title>Bookstore</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Bookstore</h1>
+<div class="container">
+	<div class="col-md-4">
 	<h2>Create a new category</h2>
-		<div class="col-md-4">
 	<!-- Controller has a function that listens the "@{create} action. -->
 	<form th:object="${category}" th:action="@{create}" action="#" method="post">
 		<label for="name">Name</label>
@@ -15,10 +16,10 @@
 		<input type="text" id="name" th:field="*{name}" class="form-control"/>
 		<div style="clear: both; display: block; height: 15px;"></div>
 		
-		<input type="submit" class="btn btn-primary" value="Create"></input>
+		<input type="submit" class="btn btn-sm btn-success" value="Create"></input>
 	</form>
 	</div>
 	
-	
+</div>	
 </body>
 </html>

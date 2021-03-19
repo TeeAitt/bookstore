@@ -3,11 +3,13 @@
 <head>
 <title>Bookstore</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
+<div class="container">
 	<h1>Bookstore categories</h1>
 	<h2>Categories</h2>
-	<table>
+	<table class="table table-striped">
 		<tbody>
 		<tr>
 			<th>Name</th>
@@ -22,8 +24,8 @@
 	
 	</table>
 	<br>
-	<a href = "/bookstore" class = "btn btn-primary">Main page</a>
+	<a href = "/bookstore" class = "btn btn-large btn-success">Main page</a>
 	
-	
+</div>	
 </body>
 </html>

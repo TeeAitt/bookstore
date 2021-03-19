@@ -11,6 +11,8 @@ import hh.swd20.bookstore.domain.Book;
 import hh.swd20.bookstore.domain.BookRepository;
 import hh.swd20.bookstore.domain.Category;
 import hh.swd20.bookstore.domain.CategoryRepository;
+import hh.swd20.bookstore.domain.User;
+import hh.swd20.bookstore.domain.UserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -21,7 +23,7 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {  // With this, the database/table contents can be test in console, with the included demo content
+	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository, UserRepository userRepository) {  // With this, the database/table contents can be test in console, with the included demo content
 		return (args) -> {
 			log.info("Save some new categories and books, for demo purposes");
 			Category category1 = new Category("Action");  // You don't need the id attribute, because it's auto generated.
@@ -38,6 +40,11 @@ public class BookstoreApplication {
 			bookRepository.save(new Book("Streets of Darkness", "Smith", 2001, "94728", 7.99, category4));
 			bookRepository.save(new Book("Travel Through Space", "Robertson", 1985, "98572", 19.99, category3));
 			
+			// Two default/demo users with passwords "user" and "admin" for the bookstore application.
+			User user1 = new User("user", "$2y$10$zNShejIBvrQ9/xbUH1Jtoedcbg2PMORwh1BIpRbOWBpPSNeYZSdRS","user@user.com", "USER");
+			User user2 = new User("admin", "$2y$10$xCBEgW5IKW/d0npWn.z1sO52VEMVG/7.xvuyIfVAuh4ZBLdXAx/ta", "admin@admin.com", "ADMIN");
+			userRepository.save(user1);
+			userRepository.save(user2);
 			
 			log.info("Fetch all categories");
 			for (Category category : categoryRepository.findAll()) {

@@ -3,8 +3,10 @@
 <head>
 <title>Bookstore</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
+<div class="container">
 	<h2>Edit book information</h2>
 	<div class="col-md-4">
 	<!-- Controller has a function that listens the "@{../save} action. -->
@@ -16,12 +18,10 @@
     <input type="text" th:field="*{year}" />
     <input type="text" th:field="*{isbn}" />
     <input type="text" th:field="*{price}" />
-    <input type="submit" class="btn btn-success" value="Save"></input>
+    <input type="submit" class="btn btn-large btn-success" value="Save"></input>
 </form>
-		
-	</form>
-	</div>
+</div>
 	
-	
+</div>	
 </body>
 </html>

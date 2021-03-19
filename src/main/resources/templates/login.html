@@ -3,19 +3,24 @@
 <head>
 <title>Bookstore</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
+<div class="container">
 	<h1>Bookstore</h1>
-	<div th:if="${param.error}">
+	<div th:if="${param.error}" class="well">
 	Invalid username and password!
 	</div>
-	<div th:if="${param.logout}">
+	<div th:if="${param.logout}" class="well">
 	You have been logged out.
 	</div>
+	<div class="col-md-4">
 	<form th:action="@{/login}" method="post">
 		<div><label>Username: <input type="text" name="username"/></label></div>
-		<div><label>Password: <input type="text" name="password"/></label></div>
-		<div><input type="submit" value="Sign in"/></div>
+		<div><label>Password: <input type="password" name="password"/></label></div>
+		<div><input type="submit" value="Sign in" class="btn btn-large btn-success"/></div>
 	</form>
+	</div>
+</div>
 </body>
 </html>
